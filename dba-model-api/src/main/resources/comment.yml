@@ -1,0 +1,15 @@
+Comment:
+  title: Comment
+  description: Comment in the system
+  allOf:
+    - properties:
+        id:
+          type: string
+        postId:
+          type: string
+        name:
+          type: string
+        body:
+          type: string
+        email:
+          type: string

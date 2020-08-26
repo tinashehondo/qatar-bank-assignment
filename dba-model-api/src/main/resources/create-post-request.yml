@@ -1,0 +1,11 @@
+CreatePostRequest:
+  title: CreatePostRequest
+  description: Create Post Request in the system
+  allOf:
+    - properties:
+        title:
+          type: string
+        body:
+          type: string
+        documentId:
+          type: string

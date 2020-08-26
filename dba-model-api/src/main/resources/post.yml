@@ -1,0 +1,13 @@
+Post:
+  title: Post
+  description: Post in the system
+  allOf:
+    - properties:
+        id:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        documentId:
+          type: string

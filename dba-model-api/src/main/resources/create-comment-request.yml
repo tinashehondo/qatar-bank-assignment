@@ -1,0 +1,13 @@
+CreateCommentRequest:
+  title: CreateCommentRequest
+  description: CreateCommentRequest in the system
+  allOf:
+    - properties:
+        postId:
+          type: string
+        name:
+          type: string
+        body:
+          type: string
+        email:
+          type: string

@@ -1,0 +1,13 @@
+Document:
+  title: Document
+  description: Document in the system
+  allOf:
+    - properties:
+        id:
+          type: string
+        name:
+          type: string
+        format:
+          type: string
+        document:
+          type: string

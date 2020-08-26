@@ -1,0 +1,255 @@
+openapi: "3.0.0"
+info:
+  description: "QDB Document management Service for clients"
+  version: "0.0.1"
+  title: "QDB Document management Service"
+  contact:
+    email: "tinashehondo@gmail.com"
+tags:
+  - name: "documents"
+    description: "QDB Document management Service"
+servers:
+  - url: http://localhost:17001/
+    description: "localhost"
+
+paths:
+
+  /documents:
+    post:
+      description: save new document
+      operationId: saveDocument
+      tags:
+        - documentService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./document-request.yml#/DocumentRequest
+        description:  Allows saving a document in the system
+        required: true
+      responses:
+        200:
+          description: The Document save in the system updated with the ID
+          content:
+            application/json:
+              schema:
+                $ref: ./document.yml#/Document
+        400:
+          description: HTTP 400 Failed to save document
+          content:
+            application/json:
+              schema:
+                $ref: ./errors/problem.yml#/Problem
+        401:
+          description: Unauthorized - The request requires user authentication
+        403:
+          description: Forbidden - The server understood the request, but is refusing it or
+            the access is not allowed.
+        404:
+          description: Resource not found
+        500:
+          description: HTTP 500 Error Response
+          content:
+            application/json:
+              schema:
+                $ref: ./errors/problem.yml#/Problem
+
+    get:
+      description: retrieve sall documents
+      operationId: getDocuments
+      tags:
+       - documentService
+      responses:
+        '200':
+          description: Successfully returned a list of documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./document.yml#/Document
+        400:
+          description: HTTP 400 Failed to get sms
+        401:
+          description: Unauthorized - The request requires user authentication
+        403:
+          description: Forbidden - The server understood the request, but is refusing it or
+            the access is not allowed.
+        404:
+          description: Resource not found
+        500:
+          description: HTTP 500 Error Response
+
+  /documents/{id}:
+    get:
+      description: retrieve a document by id
+      operationId: getDocumentById
+      tags:
+        - documentService
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: document id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned a  document
+          content:
+            application/json:
+              schema:
+                $ref: ./document.yml#/Document
+        400:
+          description: HTTP 400 Failed to get sms
+        401:
+          description: Unauthorized - The request requires user authentication
+        403:
+          description: Forbidden - The server understood the request, but is refusing it or
+            the access is not allowed.
+        404:
+          description: Resource not found
+        500:
+          description: HTTP 500 Error Response
+
+    delete:
+      description: delete a document by id
+      operationId: deleteDocumentById
+      tags:
+        - documentService
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: document id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned a  document
+          content:
+            application/json:
+              schema:
+                type: boolean
+        400:
+          description: HTTP 400 Failed to get sms
+        401:
+          description: Unauthorized - The request requires user authentication
+        403:
+          description: Forbidden - The server understood the request, but is refusing it or
+            the access is not allowed.
+        404:
+          description: Resource not found
+        500:
+          description: HTTP 500 Error Response
+
+  /posts:
+    post:
+      description: save a new post
+      operationId: savePost
+      tags:
+        - postsService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./create-post-request.yml#/CreatePostRequest
+        description:  Allows saving of a post in the system
+        required: true
+      responses:
+        200:
+          description: The Post saved in the system updated with the ID
+          content:
+            application/json:
+              schema:
+                $ref: ./post.yml#/Post
+        400:
+          description: HTTP 400 Failed to save post
+          content:
+            application/json:
+              schema:
+                $ref: ./errors/problem.yml#/Problem
+        401:
+          description: Unauthorized - The request requires user authentication
+        403:
+          description: Forbidden - The server understood the request, but is refusing it or
+            the access is not allowed.
+        404:
+          description: Resource not found
+        500:
+          description: HTTP 500 Error Response
+          content:
+            application/json:
+              schema:
+                $ref: ./errors/problem.yml#/Problem
+  /posts/{documentId}:
+    get:
+      description: retrieve a post by document id
+      operationId: getPostByDocumentId
+      tags:
+        - postsService
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          description: document id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned a  post
+          content:
+            application/json:
+              schema:
+                $ref: ./post.yml#/Post
+        400:
+          description: HTTP 400 Failed to get sms
+        401:
+          description: Unauthorized - The request requires user authentication
+        403:
+          description: Forbidden - The server understood the request, but is refusing it or
+            the access is not allowed.
+        404:
+          description: Resource not found
+        500:
+          description: HTTP 500 Error Response
+
+  /comments:
+    post:
+      description: save a new comment
+      operationId: saveComment
+      tags:
+        - postsService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./create-comment-request.yml#/CreateCommentRequest
+        description:  Allows saving of a comment in the system
+        required: true
+      responses:
+        200:
+          description: The Comment saved in the system updated with the ID
+          content:
+            application/json:
+              schema:
+                $ref: ./comment.yml#/Comment
+        400:
+          description: HTTP 400 Failed to save post
+          content:
+            application/json:
+              schema:
+                $ref: ./errors/problem.yml#/Problem
+        401:
+          description: Unauthorized - The request requires user authentication
+        403:
+          description: Forbidden - The server understood the request, but is refusing it or
+            the access is not allowed.
+        404:
+          description: Resource not found
+        500:
+          description: HTTP 500 Error Response
+          content:
+            application/json:
+              schema:
+                $ref: ./errors/problem.yml#/Problem

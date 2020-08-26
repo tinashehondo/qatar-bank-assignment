@@ -1,0 +1,11 @@
+DocumentRequest:
+  title: DocumentRequest
+  description: DocumentRequest to be saved
+  allOf:
+    - properties:
+        name:
+          type: string
+        format:
+          type: string
+        document:
+          type: string
